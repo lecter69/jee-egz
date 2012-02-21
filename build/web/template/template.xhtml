@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+    
+    <f:view locale="#{languageSwitcher.locale}">
+    
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>#{msg.title}</title>
+    </h:head>
+    
+    <h:body>
+        
+        <div id="left">            
+            <div id="language_div">          
+               <h:form id="langauge_form">
+                  <h:commandLink action="#{languageSwitcher.changeLanguage('pl')}" value="PL" /> |
+                  <h:commandLink action="#{languageSwitcher.changeLanguage('en')}" value="EN" />
+               </h:form>
+            </div>
+            
+             <ul id="menu">
+                  <hr/><br/>
+                  <li><h:outputLink value="index.xhtml">#{msg.main}</h:outputLink></li>
+                  <br/><hr/><br/>
+                  <li><h:outputLink value="add_uczen.xhtml">#{msg.addUczen}</h:outputLink></li>
+                  <br/>
+                  <li><h:outputLink value="show_uczen.xhtml">#{msg.showUczen}</h:outputLink></li>
+                  <br/><hr/><br/>
+                  <li><h:outputLink value="add_nauczyciel.xhtml">#{msg.addNauczyciel}</h:outputLink></li>
+                  <br/>
+                  <li><h:outputLink value="show_nauczyciel.xhtml">#{msg.showNauczyciel}</h:outputLink></li>
+                  <br/><hr/><br/>
+                  <li><h:outputLink value="add_przedmiot.xhtml">#{msg.addPrzedmiot}</h:outputLink></li>
+                  <br/>
+                  <li><h:outputLink value="show_przedmiot.xhtml">#{msg.showPrzedmiot}</h:outputLink></li>
+                  <br/><hr/><br/>
+                  <li><h:outputLink value="add_plan.xhtml">#{msg.addPlan}</h:outputLink></li>
+                  <br/>
+                  <li><h:outputLink value="show_plan.xhtml">#{msg.showPlan}</h:outputLink></li>
+                  <br/><hr/>
+             </ul>
+        </div>
+        <div id="content" class="left_content">
+            <ui:insert name="content"></ui:insert>
+            <h:messages id="wiadomosci" infoStyle="color:green"  />
+            
+            <div id="footer">Technologie Java Enterprise - Jakub Martin, 186408, III rok Informatyki UG, 2011/2012</div>
+            
+        </div>
+        
+    </h:body>
+         
+    </f:view>     
+         
+</html>

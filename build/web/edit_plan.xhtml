@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template/template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich">
+    
+    <ui:define name="content">
+        <h1>#{msg.editPlan}</h1>
+        <h:form>
+            <table>
+                <tr>
+                    <td>#{msg.wybierzUcznia}</td>
+                    <td>
+                        <h:selectOneMenu id="uczen" value="#{planBean.plan.planPK.uczen}"  required="true">
+                             <f:selectItems value="#{uczenBean.lista}" var="uczen" itemValue="#{uczen.id}" itemLabel="#{uczen.imie} #{uczen.nazwisko}" />
+                        </h:selectOneMenu>
+                    </td>
+                </tr>
+                <tr>
+                    <td>#{msg.wybierzNauczyciela}</td>
+                    <td>
+                        <h:selectOneMenu id="nauczyciel" value="#{planBean.plan.planPK.nauczyciel}"  required="true">
+                             <f:selectItems value="#{nauczycielBean.lista}" var="nauczyciel" itemValue="#{nauczyciel.id}" itemLabel="#{nauczyciel.imie} #{nauczyciel.nazwisko}" />
+                        </h:selectOneMenu>
+                    </td>
+                </tr>   
+                <tr>
+                    <td>#{msg.wybierzPrzedmiot}</td>
+                    <td>
+                        <h:selectOneMenu id="przedmiot" value="#{planBean.plan.planPK.przedmiot}"  required="true">
+                             <f:selectItems value="#{przedmiotBean.lista}" var="przedmiot" itemValue="#{przedmiot.id}" itemLabel="#{przedmiot.nazwa}" />
+                        </h:selectOneMenu>
+                    </td>
+                </tr>  
+                <tr>
+                    <td>#{msg.dzien}</td>
+                    <td>
+                        <h:inputText value="#{planBean.plan.dzien}" required="true" >
+                            <a4j:ajax render="wiadomosci" execute="@this" /><rich:validator />
+                        </h:inputText>
+                    </td>
+                </tr>
+                <tr>
+                    <td>#{msg.godzina}</td>
+                    <td>
+                        <h:inputText value="#{planBean.plan.godzina}" required="true" >
+                            <a4j:ajax render="wiadomosci" execute="@this" /><rich:validator />
+                        </h:inputText>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td></td><td><h:commandButton action="#{planBean.edytuj}" value="#{msg.edit}" /></td>
+                </tr>
+            </table>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

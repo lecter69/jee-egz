@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template/template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="content">
+        <h1>#{msg.listNauczyciel}</h1>
+        
+        <h:form>
+            <p:dataTable value="#{nauczycielBean.lista}" var="nauczyciel" paginator="true" rows="5"  
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                 rowsPerPageTemplate="5,10,15">                
+                <p:column>
+                    <f:facet name="header">#{msg.pesel}</f:facet>
+                    <h:outputText value="#{nauczyciel.pesel}" />
+                </p:column> 
+                <p:column>
+                    <f:facet name="header">#{msg.imie}</f:facet>
+                    <h:outputText value="#{nauczyciel.imie}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">#{msg.nazwisko}</f:facet>
+                    <h:outputText value="#{nauczyciel.nazwisko}" />
+                </p:column> 
+                <p:column>
+                    <h:commandLink value="#{msg.showPlan}" action="#{nauczycielBean.pokazPlan}" actionListener="#{nauczycielBean.nauczycielListener}">
+                         <f:param name="nauczycielID" value="#{nauczyciel.id}" />
+                    </h:commandLink>
+                </p:column>
+                <p:column>                    
+                    <h:commandLink value="#{msg.edit}" action="#{nauczycielBean.zaladujDoEdycji}" actionListener="#{nauczycielBean.nauczycielListener}">
+                        <f:param name="nauczycielID" value="#{nauczyciel.id}" />
+                    </h:commandLink>
+                </p:column>
+                <p:column>                    
+                    <h:commandLink value="#{msg.delete}" action="#{nauczycielBean.usun}" actionListener="#{nauczycielBean.nauczycielListener}">
+                         <f:param name="nauczycielID" value="#{nauczyciel.id}" />
+                    </h:commandLink>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        
+    </ui:define>
+
+</ui:composition>

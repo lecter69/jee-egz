@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+    <managed-bean>
+        <managed-bean-name>nauczycielBean</managed-bean-name>
+        <managed-bean-class>controllers.NauczycielBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>uczenBean</managed-bean-name>
+        <managed-bean-class>controllers.UczenBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>przedmiotBean</managed-bean-name>
+        <managed-bean-class>controllers.PrzedmiotBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>planBean</managed-bean-name>
+        <managed-bean-class>controllers.PlanBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>nauczycielID</property-name>
+            <value>#{nauczycielBean.nauczyciel.id}</value>
+        </managed-property>
+        <managed-property>
+            <property-name>uczenID</property-name>
+            <value>#{uczenBean.uczen.id}</value>
+        </managed-property>
+    </managed-bean>
+    
+    <converter>
+        <converter-id>planPKConverter</converter-id>
+        <converter-class>config.PlanPKConverter</converter-class>
+    </converter>
+    <validator>
+        <validator-id>uczenPeselValidator</validator-id>
+        <validator-class>config.UczenPeselValidator</validator-class>
+    </validator>
+    <validator>
+        <validator-id>nauczycielPeselValidator</validator-id>
+        <validator-class>config.NauczycielPeselValidator</validator-class>
+    </validator>
+    <validator>
+        <validator-id>timeValidator</validator-id>
+        <validator-class>config.TimeValidator</validator-class>
+    </validator>
+    
+    <application>
+	<resource-bundle>
+		<base-name>i18n.messages</base-name>
+		<var>msg</var>
+	</resource-bundle>
+
+	<message-bundle>i18n.errormessages</message-bundle>
+
+	<locale-config>
+		<default-locale>pl</default-locale>
+		<supported-locale>pl</supported-locale>
+		<supported-locale>en</supported-locale>
+        </locale-config>
+    </application>
+        
+</faces-config>

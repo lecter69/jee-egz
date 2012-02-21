@@ -1,0 +1,35 @@
+create table uczen(
+	id int not null auto_increment primary key,
+	pesel varchar(11) not null,
+	imie varchar(50) not null,
+	nazwisko varchar(50) not null
+);
+
+create table nauczyciel(
+	id int not null auto_increment primary key,
+	pesel varchar(11) not null,
+	imie varchar(50) not null,
+	nazwisko varchar(50) not null	
+);
+
+create table przedmiot(
+	id int not null auto_increment primary key,
+	nazwa varchar(50) not null
+);
+
+create table plan(
+	uczen int not null,
+	nauczyciel int not null,
+	przedmiot int not null,
+	dzien int not null,
+	godzina float not null,
+	primary key (uczen,nauczyciel,przedmiot),
+	index uczen_plan (uczen),
+	index nauczyciel_plan (nauczyciel),
+	index przedmiot_plan (przedmiot),
+	unique index uczen_dzien_godzina_unique (uczen,dzien,godzina),
+	unique index nauczyciel_dzien_godzina_unique (nauczyciel,dzien,godzina),	
+	constraint uczen_plan foreign key (uczen) references uczen (id) on update cascade on delete cascade,
+	constraint nauczyciel_plan foreign key (nauczyciel) references nauczyciel (id) on update cascade on delete cascade,
+	constraint przedmiot_plan foreign key (przedmiot) references przedmiot (id) on update cascade on delete cascade
+);

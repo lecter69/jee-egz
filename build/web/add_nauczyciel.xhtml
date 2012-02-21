@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template/template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:rich="http://richfaces.org/rich">
+    
+    <ui:define name="content">
+        
+        <h1>#{msg.addNauczyciel}</h1>
+                      
+         <h:form>
+            <table>
+                <tr><td>#{msg.pesel}</td><td><h:inputText id="pesel" value="#{nauczycielBean.nauczyciel.pesel}" required="true"><a4j:ajax render="wiadomosci" execute="@this" /><rich:validator /><f:validator id="uczenValidator" validatorId="uczenPeselValidator" /></h:inputText></td></tr>
+                <tr><td>#{msg.imie}</td><td><h:inputText id="imie" value="#{nauczycielBean.nauczyciel.imie}" required="true" /></td></tr>
+                <tr><td>#{msg.nazwisko}</td><td><h:inputText id="nazwisko" value="#{nauczycielBean.nauczyciel.nazwisko}" required="true" /></td></tr>                               
+                <tr><td></td><td><h:commandButton action="#{nauczycielBean.dodaj}" value="#{msg.add}" /></td></tr>
+            </table>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
